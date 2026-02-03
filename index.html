@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Question 💌</title>
+  <title>One Question 💌</title>
   <style>
     body {
       margin: 0;
@@ -32,22 +32,26 @@
       border: none;
       border-radius: 6px;
       cursor: pointer;
-      position: absolute;
+      margin: 8px;
     }
     .before {
       background-color: #ff4d4d;
       color: white;
-      position: static;
-      margin-bottom: 20px;
+    }
+    .on {
+      background-color: #ffe5e5;
+      color: red;
     }
     .after {
       background-color: #ffd6d6;
       color: red;
+      position: absolute;
     }
     #response {
-      margin-top: 80px;
+      margin-top: 25px;
       font-size: 18px;
       color: #333;
+      max-width: 280px;
     }
   </style>
 </head>
@@ -55,12 +59,16 @@
   <div class="container">
     <h1>Will you go out on a date with me?</h1>
 
-    <button class="before" onclick="yesClicked()">
-      Before 14th Feb ❤️
+    <button class="before" id="beforeBtn" onclick="beforeClicked()">
+      Before 14th ❤️
+    </button>
+
+    <button class="on" id="onBtn" onclick="onClicked()">
+      On 14th 💌
     </button>
 
     <button class="after" id="afterBtn">
-      After 14th Feb 😉
+      After 14th 😉
     </button>
 
     <div id="response"></div>
@@ -68,8 +76,10 @@
 
   <script>
     const afterBtn = document.getElementById("afterBtn");
+    const onBtn = document.getElementById("onBtn");
+    const response = document.getElementById("response");
 
-    function moveButton() {
+    function moveAfterButton() {
       const padding = 20;
       const maxX = window.innerWidth - afterBtn.offsetWidth - padding;
       const maxY = window.innerHeight - afterBtn.offsetHeight - padding;
@@ -81,17 +91,28 @@
       afterBtn.style.top = y + "px";
     }
 
-    afterBtn.addEventListener("mouseover", moveButton);
-    afterBtn.addEventListener("touchstart", moveButton);
+    afterBtn.addEventListener("mouseover", moveAfterButton);
+    afterBtn.addEventListener("touchstart", moveAfterButton);
 
-    function yesClicked() {
-      document.getElementById("response").innerHTML =
-        "Okay then… it’s a date 💖 I’ll plan something nice.";
+    function onClicked() {
+      response.innerHTML = "Are you sure? That’s a bit too far 😔";
+      setTimeout(() => {
+        response.innerHTML =
+          "Let’s not wait that long… let’s make it happen before that instead 💕";
+        onBtn.style.display = "none";
+        afterBtn.style.display = "none";
+      }, 2000);
+    }
+
+    function beforeClicked() {
+      response.innerHTML =
+        "Perfect 🥰 It’s a date then. I’ll take care of the rest 💫";
+      onBtn.style.display = "none";
       afterBtn.style.display = "none";
     }
 
-    // Initial random position
-    moveButton();
+    // initial position for runaway button
+    moveAfterButton();
   </script>
 </body>
 </html>
