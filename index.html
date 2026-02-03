@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A Chai Date? ☕</title>
 
 <style>
@@ -11,22 +11,9 @@
     height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
     overflow: hidden;
-    position: relative;
     background-color: #fff;
+    position: relative;
   }
-
-  .bg-layer {
-    position: absolute;
-    top: 0;
-    width: 50%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    opacity: 0.15;
-    z-index: 0;
-  }
-  .nit { left: 0; background-image: url('images/nit.jpeg'); }
-  .du  { right: 0; background-image: url('images/du.jpg'); }
 
   .container {
     position: relative;
@@ -69,7 +56,7 @@
     margin-top: 20px;
     font-size: 17px;
     color: #333;
-    max-width: 320px;
+    max-width: 350px;
     opacity: 0;
     transition: opacity 0.6s ease;
   }
@@ -94,9 +81,6 @@
 </head>
 
 <body>
-
-<div class="bg-layer nit"></div>
-<div class="bg-layer du"></div>
 
 <div class="container">
   <h1>Would you go on a chai date with me Pratibha? ☕</h1>
@@ -123,7 +107,7 @@ const mainOptions = document.getElementById("mainOptions");
 const subOptions = document.getElementById("subOptions");
 const onBtn = document.getElementById("onBtn");
 
-/* playful moving button */
+/* playful moving button for "After 14th Feb" */
 function moveAfterButton() {
   const padding = 20;
   const maxX = window.innerWidth - afterBtn.offsetWidth - padding;
@@ -135,7 +119,7 @@ afterBtn.addEventListener("mouseover", moveAfterButton);
 afterBtn.addEventListener("touchstart", moveAfterButton);
 moveAfterButton();
 
-/* fade message */
+/* fade-in messages */
 function showMessage(msg) {
   response.style.opacity = 0;
   setTimeout(() => {
@@ -159,27 +143,21 @@ function beforeClicked() {
   subOptions.style.display = "block";
 }
 
+/* final choice shows exactly what button she clicked */
 function finalChoice(choiceText) {
   let extraMessage = "";
-
-  if (choiceText.includes("Today"))
-    extraMessage = "Hurry I need to come from Gurgaon 😅☕";
-  else if (choiceText.includes("Tomorrow"))
-    extraMessage = "Okayyy 😌 but that’s like 24 hours!!! ☕";
-  else
-    extraMessage = "Wow… patience level expert 😄☕";
+  if (choiceText.includes("Today")) extraMessage = "Hurry I need to come from Gurgaon 😅☕";
+  else if (choiceText.includes("Tomorrow")) extraMessage = "Okayyy 😌 but that’s like 24 hours!!! ☕";
+  else extraMessage = "Wow… patience level expert 😄☕";
 
   showMessage(
-    `You chose:<br>
-     <div class="chosen">${choiceText}</div>
-     <br>${extraMessage}<br><br>
-     Call me or text me — I’m already smiling 🙈`
+    `You chose:<br><div class="chosen">${choiceText}</div><br>${extraMessage}<br><br>Call me or text me — I’m already smiling 🙈`
   );
 
   subOptions.style.display = "none";
 }
 
-/* floating cups */
+/* floating chai cups */
 setInterval(() => {
   const cup = document.createElement("div");
   cup.className = "cup";
