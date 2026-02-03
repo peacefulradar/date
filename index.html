@@ -3,18 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Question</title>
+  <title>Question 💌</title>
   <style>
     body {
       margin: 0;
       height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       background: white;
       font-family: Arial, Helvetica, sans-serif;
+      overflow: hidden;
     }
     .container {
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       text-align: center;
       padding: 20px;
     }
@@ -24,22 +28,24 @@
     }
     button {
       padding: 12px 20px;
-      margin: 10px;
       font-size: 16px;
       border: none;
       border-radius: 6px;
       cursor: pointer;
+      position: absolute;
     }
     .before {
       background-color: #ff4d4d;
       color: white;
+      position: static;
+      margin-bottom: 20px;
     }
     .after {
       background-color: #ffd6d6;
       color: red;
     }
     #response {
-      margin-top: 30px;
+      margin-top: 80px;
       font-size: 18px;
       color: #333;
     }
@@ -49,11 +55,11 @@
   <div class="container">
     <h1>Will you go out on a date with me?</h1>
 
-    <button class="before" onclick="showResponse('before')">
+    <button class="before" onclick="yesClicked()">
       Before 14th Feb ❤️
     </button>
 
-    <button class="after" onclick="showResponse('after')">
+    <button class="after" id="afterBtn">
       After 14th Feb 😉
     </button>
 
@@ -61,14 +67,31 @@
   </div>
 
   <script>
-    function showResponse(choice) {
-      const response = document.getElementById("response");
-      if (choice === "before") {
-        response.innerHTML = "Guess I should start planning something cute then 💫";
-      } else {
-        response.innerHTML = "Good things are worth waiting for… I’ll be patient 😊";
-      }
+    const afterBtn = document.getElementById("afterBtn");
+
+    function moveButton() {
+      const padding = 20;
+      const maxX = window.innerWidth - afterBtn.offsetWidth - padding;
+      const maxY = window.innerHeight - afterBtn.offsetHeight - padding;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      afterBtn.style.left = x + "px";
+      afterBtn.style.top = y + "px";
     }
+
+    afterBtn.addEventListener("mouseover", moveButton);
+    afterBtn.addEventListener("touchstart", moveButton);
+
+    function yesClicked() {
+      document.getElementById("response").innerHTML =
+        "Okay then… it’s a date 💖 I’ll plan something nice.";
+      afterBtn.style.display = "none";
+    }
+
+    // Initial random position
+    moveButton();
   </script>
 </body>
 </html>
