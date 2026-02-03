@@ -24,7 +24,7 @@
     }
     h1 {
       color: red;
-      margin-bottom: 30px;
+      margin-bottom: 25px;
     }
     button {
       padding: 12px 20px;
@@ -47,11 +47,15 @@
       color: red;
       position: absolute;
     }
+    .option {
+      background-color: #ffeded;
+      color: red;
+    }
     #response {
-      margin-top: 25px;
-      font-size: 18px;
+      margin-top: 20px;
+      font-size: 17px;
       color: #333;
-      max-width: 280px;
+      max-width: 300px;
     }
   </style>
 </head>
@@ -59,40 +63,40 @@
   <div class="container">
     <h1>Will you go out on a date with me?</h1>
 
-    <button class="before" id="beforeBtn" onclick="beforeClicked()">
-      Before 14th ❤️
-    </button>
+    <div id="mainOptions">
+      <button class="before" onclick="beforeClicked()">Before 14th ❤️</button>
+      <button class="on" id="onBtn" onclick="onClicked()">On 14th 💌</button>
+      <button class="after" id="afterBtn">After 14th 😉</button>
+    </div>
 
-    <button class="on" id="onBtn" onclick="onClicked()">
-      On 14th 💌
-    </button>
-
-    <button class="after" id="afterBtn">
-      After 14th 😉
-    </button>
+    <div id="subOptions" style="display: none;">
+      <button class="option" onclick="finalChoice('today')">Today 😌</button>
+      <button class="option" onclick="finalChoice('tomorrow')">Tomorrow 🙂</button>
+      <button class="option" onclick="finalChoice('dayafter')">Day after tomorrow 😉</button>
+    </div>
 
     <div id="response"></div>
   </div>
 
   <script>
     const afterBtn = document.getElementById("afterBtn");
-    const onBtn = document.getElementById("onBtn");
     const response = document.getElementById("response");
+    const mainOptions = document.getElementById("mainOptions");
+    const subOptions = document.getElementById("subOptions");
+    const onBtn = document.getElementById("onBtn");
 
     function moveAfterButton() {
       const padding = 20;
       const maxX = window.innerWidth - afterBtn.offsetWidth - padding;
       const maxY = window.innerHeight - afterBtn.offsetHeight - padding;
 
-      const x = Math.random() * maxX;
-      const y = Math.random() * maxY;
-
-      afterBtn.style.left = x + "px";
-      afterBtn.style.top = y + "px";
+      afterBtn.style.left = Math.random() * maxX + "px";
+      afterBtn.style.top = Math.random() * maxY + "px";
     }
 
     afterBtn.addEventListener("mouseover", moveAfterButton);
     afterBtn.addEventListener("touchstart", moveAfterButton);
+    moveAfterButton();
 
     function onClicked() {
       response.innerHTML = "Are you sure? That’s a bit too far 😔";
@@ -101,18 +105,33 @@
           "Let’s not wait that long… let’s make it happen before that instead 💕";
         onBtn.style.display = "none";
         afterBtn.style.display = "none";
-      }, 2000);
+      }, 1800);
     }
 
     function beforeClicked() {
-      response.innerHTML =
-        "Perfect 🥰 It’s a date then. I’ll take care of the rest 💫";
-      onBtn.style.display = "none";
-      afterBtn.style.display = "none";
+      response.innerHTML = "Okayyy 😄 when exactly?";
+      mainOptions.style.display = "none";
+      subOptions.style.display = "block";
     }
 
-    // initial position for runaway button
-    moveAfterButton();
+    function finalChoice(day) {
+      let extraMessage = "";
+
+      if (day === "today") {
+        extraMessage = "Please be fast… I have to come from Gurgaon 😅";
+      } else if (day === "tomorrow") {
+        extraMessage = "Okayyy 😌 but that’s like 24 hours!!!";
+      } else {
+        extraMessage = "Wow… that’s some serious patience 😄 respect.";
+      }
+
+      response.innerHTML =
+        "Oops 😅 I don’t actually get to know what you clicked…<br><br>" +
+        "Can you send me a screenshot please? 🙈<br><br>" +
+        "<em>" + extraMessage + "</em>";
+
+      subOptions.style.display = "none";
+    }
   </script>
 </body>
 </html>
