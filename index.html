@@ -1,105 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Since you selected Tomorrow? Are you sure? 🫶</title>
-<style>
-  body {
-    margin: 0;
-    height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    overflow: hidden;
-    background: url('images/prat.jpeg') center/cover no-repeat;
-    position: relative;
-  }
-
-  .container {
-    position: relative;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 20px;
-    z-index: 1;
-    backdrop-filter: brightness(0.85);
-  }
-
-  h1 {
-    color: #fff;
-    text-shadow: 1px 1px 4px #000;
-    margin-bottom: 25px;
-  }
-
-  button {
-    padding: 12px 20px;
-    font-size: 16px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    margin: 8px;
-    transition: all 0.2s ease;
-  }
-
-  button:hover {
-    transform: scale(1.05);
-  }
-
-  .yes { background-color: #4CAF50; color: white; }
-  .no { background-color: #f44336; color: white; position: absolute; transition: top 0.3s ease, left 0.3s ease; }
-
-  #response {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #fff;
-    max-width: 350px;
-    opacity: 0;
-    transition: opacity 0.6s ease;
-    text-shadow: 1px 1px 4px #000;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sorry</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0f0f0f;
+      color: #ffffff;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      text-align: center;
+    }
+    h1 {
+      font-weight: 400;
+      font-size: 1.8rem;
+      line-height: 1.5;
+    }
+  </style>
 </head>
-
 <body>
-
-<div class="container">
-  <h1>Since you selected Tomorrow? Are you sure? 🫶</h1>
-
-  <div id="options">
-    <button class="yes" onclick="yesClicked()">Yes ✅</button>
-    <button class="no" id="noBtn">No ❌</button>
-  </div>
-
-  <div id="response"></div>
-</div>
-
-<script>
-const noBtn = document.getElementById("noBtn");
-const response = document.getElementById("response");
-
-/* Make "No" button move away */
-function moveNoButton() {
-  const padding = 20;
-  const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-  const maxY = window.innerHeight - noBtn.offsetHeight - padding;
-  noBtn.style.left = Math.random() * maxX + "px";
-  noBtn.style.top = Math.random() * maxY + "px";
-}
-noBtn.addEventListener("mouseover", moveNoButton);
-noBtn.addEventListener("touchstart", moveNoButton);
-moveNoButton();
-
-/* Yes button clicked */
-function yesClicked() {
-  response.style.opacity = 0;
-  setTimeout(() => {
-    response.innerHTML = "Yay! 🥳 Send me the location and time 🫶";
-    response.style.opacity = 1;
-  }, 300);
-}
-</script>
-
+  <h1>
+    Sorry Pratibha.<br />
+    Call me when you’re free.
+  </h1>
 </body>
 </html>
